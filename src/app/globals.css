@@ -1,0 +1,47 @@
+
+@import "tailwindcss";
+
+:root {
+  --foreground-rgb: 1, 0, 0;
+  --background-start-rgb: 72, 83, 75;
+  --background-end-rgb: 72, 83, 75;
+}
+
+body {
+  color: white;
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+/* Classes customizadas simples */
+.glass-card {
+  background: #6c7a6c;
+  /*-webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);*/
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+/*.glass-card-home {
+  background: #51724ee8;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgb(5, 5, 5);
+}*/
+.gradient-bg {
+  background: linear-gradient(135deg, 
+    rgb(215, 221, 218) 0%,
+    rgba(158, 189, 158, 0.719) 50%,
+    rgba(81, 105, 85, 0.753) 100%);
+}
+/* 🔥 Corrige placeholder/texto quando o navegador faz AUTOFILL */
+input:-webkit-autofill {
+  -webkit-text-fill-color: #000000 !important; /* Cor do texto */
+  transition: background-color 999999s ease-in-out 0s; /* remove bg amarelo */
+}
+
+input:-webkit-autofill::placeholder {
+  color: #999 !important; /* Cor do placeholder */
+}
