@@ -1,4 +1,3 @@
-```markdown
 # AVB Login System
 
 Sistema de autenticação moderno e seguro.
@@ -48,7 +47,6 @@ Sistema completo de autenticação desenvolvido com Next.js 14, TypeScript, Mong
 ## 📦 Estrutura do Projeto
 
 ```
-
 avb-login-system/
 ├── src/
 │   ├── app/
@@ -73,7 +71,6 @@ avb-login-system/
 │   └── images/
 ├── package.json
 └── tailwind.config.js
-
 ```
 
 ## 🔧 Instalação e Configuração
@@ -90,13 +87,11 @@ cd avb-login-system
 ```
 
 ### 2. Instale as dependências
-
 ```bash
 npm install
 ```
 
 ### 3. Configure as variáveis de ambiente
-
 Crie um arquivo `.env.local` na raiz do projeto:
 
 ```env
@@ -106,7 +101,6 @@ NEXTAUTH_URL=http://localhost:3000
 ```
 
 ### 4. Execute o projeto
-
 ```bash
 npm run dev
 ```
@@ -116,7 +110,6 @@ O sistema estará disponível em `http://localhost:3000`
 ## 🗄️ Configuração do Banco de Dados
 
 ### MongoDB
-
 O sistema usa MongoDB para armazenamento. Certifique-se de ter:
 
 1. MongoDB instalado e rodando
@@ -124,7 +117,6 @@ O sistema usa MongoDB para armazenamento. Certifique-se de ter:
 3. Collection `users` para armazenamento
 
 ### Estrutura do User
-
 ```javascript
 {
   _id: ObjectId,
@@ -142,19 +134,16 @@ O sistema usa MongoDB para armazenamento. Certifique-se de ter:
 ## 🔒 Recursos de Segurança
 
 ### Rate Limiting
-
 - **5 tentativas** por IP a cada 15 minutos
 - **Bloqueio automático** por 30 minutos após exceder
 - **Reset** após login bem-sucedido
 
 ### Proteção de Conta
-
 - **Bloqueio automático** após 5 tentativas falhas
 - **Tokens temporários** para recuperação de senha
 - **Validação de email** obrigatória
 
 ### Segurança de Dados
-
 - **Senhas hash** com bcrypt (salt 12)
 - **Tokens JWT** com expiração de 24h
 - **CORS** configurado
@@ -163,18 +152,15 @@ O sistema usa MongoDB para armazenamento. Certifique-se de ter:
 ## 📱 Páginas e Rotas
 
 ### Públicas
-
 - `/` - Landing page
 - `/login` - Página de login
 - `/register` - Página de registro
 - `/forgot-password` - Recuperação de senha
 
 ### Protegidas
-
 - `/dashboard` - Painel administrativo (requer autenticação)
 
 ### API Routes
-
 - `POST /api/auth/login` - Autenticação
 - `POST /api/auth/register` - Registro
 - `POST /api/auth/forgot-password` - Recuperação de senha
@@ -184,7 +170,6 @@ O sistema usa MongoDB para armazenamento. Certifique-se de ter:
 ## 🎨 Personalização
 
 ### Cores Corporativas
-
 ```css
 --avb-green: #5B9C72;    /* Verde AVB */
 --avb-dark: #1a3b23;     /* Verde escuro */
@@ -192,7 +177,6 @@ O sistema usa MongoDB para armazenamento. Certifique-se de ter:
 ```
 
 ### Componentes
-
 - **Header** com menu responsivo
 - **Footer** com links corporativos
 - **Formulários** com validação
@@ -201,21 +185,21 @@ O sistema usa MongoDB para armazenamento. Certifique-se de ter:
 ## 🚀 Deploy
 
 ### Vercel (Recomendado)
-
 ```bash
 npm run build
 vercel deploy
 ```
+
 
 ## 👥 Time de Desenvolvimento
 
 - **Desenvolvimento:** Valclemir soares
-- **Curso:** Análise e desenvolvimento de sistemas
+- **Curso:** Análise e desenvolvimento de sistemas 
+
 
 ## 🔄 Changelog
 
 ### v1.0.0 (2024)
-
 - ✅ Sistema de autenticação completo
 - ✅ Dashboard administrativo
 - ✅ Proteção contra força bruta
@@ -223,238 +207,4 @@ vercel deploy
 
 ---
 
-**Pequeno passo todos os dias** ♻️
-
-```
-
-```
-
-avb-login-system/
-├── src/
-│   ├── app/
-│   │   ├── (auth)/
-│   │   │   ├── login/
-│   │   │   ├── register/
-│   │   │   └── forgot-password/
-│   │   ├── dashboard/
-│   │   ├── api/
-│   │   │   ├── auth/
-│   │   │   └── dashboard/
-│   │   └── globals.css
-│   ├── components/
-│   │   ├── Header.tsx
-│   │   ├── Footer.tsx
-│   │   └── dashboardChart.tsx
-│   └── lib/
-│       ├── mongodb.ts
-│       ├── auth.ts
-│       └── rateLimit.ts
-├── public/
-│   └── images/
-├── package.json
-└── tailwind.config.js
-
-```
-
-## 🔧 Instalação e Configuração
-
-### Pré-requisitos
-- Node.js 18+
-- MongoDB
-- npm ou yarn
-
-### 1. Clone o repositório
-```bash
-git clone https://github.com/seu-usuario/avb-login-system.git
-cd avb-login-system
-```
-
-### 2. Instale as dependências
-
-```bash
-npm install
-```
-
-### 3. Configure as variáveis de ambiente
-
-Crie um arquivo `.env.local` na raiz do projeto:
-
-```env
-MONGODB_URI=mongodb://localhost:27017/avb-login
-JWT_SECRET=seu_jwt_secret_super_seguro_aqui
-NEXTAUTH_URL=http://localhost:3000
-```
-
-### 4. Execute o projeto
-
-```bash
-npm run dev
-```
-
-O sistema estará disponível em `http://localhost:3000`
-
-## 🗄️ Configuração do Banco de Dados
-
-### MongoDB
-
-O sistema usa MongoDB para armazenamento. Certifique-se de ter:
-
-1. MongoDB instalado e rodando
-2. Database `avb-login` criado
-3. Collection `users` para armazenamento
-
-### Estrutura do User
-
-```javascript
-{
-  _id: ObjectId,
-  name: String,
-  email: String,
-  password: String, // Hash bcrypt
-  createdAt: Date,
-  failedAttempts: Number,
-  lockedUntil: Date,
-  resetPasswordToken: String,
-  resetPasswordExpires: Date
-}
-```
-
-## 🔒 Recursos de Segurança
-
-### Rate Limiting
-
-- **5 tentativas** por IP a cada 15 minutos
-- **Bloqueio automático** por 30 minutos após exceder
-- **Reset** após login bem-sucedido
-
-### Proteção de Conta
-
-- **Bloqueio automático** após 5 tentativas falhas
-- **Tokens temporários** para recuperação de senha
-- **Validação de email** obrigatória
-
-### Segurança de Dados
-
-- **Senhas hash** com bcrypt (salt 12)
-- **Tokens JWT** com expiração de 24h
-- **CORS** configurado
-- **Headers de segurança** implementados
-
-## 📱 Páginas e Rotas
-
-### Públicas
-
-- `/` - Landing page
-- `/login` - Página de login
-- `/register` - Página de registro
-- `/forgot-password` - Recuperação de senha
-
-### Protegidas
-
-- `/dashboard` - Painel administrativo (requer autenticação)
-
-### API Routes
-
-- `POST /api/auth/login` - Autenticação
-- `POST /api/auth/register` - Registro
-- `POST /api/auth/forgot-password` - Recuperação de senha
-- `GET /api/user/profile` - Perfil do usuário
-- `GET /api/dashboard/stats` - Estatísticas do dashboard
-
-## 🎨 Personalização
-
-### Cores Corporativas
-
-```css
---avb-green: #5B9C72;    /* Verde AVB */
---avb-dark: #1a3b23;     /* Verde escuro */
---avb-light: #8bc34a;    /* Verde claro */
-```
-
-### Componentes
-
-- **Header** com menu responsivo
-- **Footer** com links corporativos
-- **Formulários** com validação
-- **Gráficos** responsivos
-
-## 🚀 Deploy
-
-### Vercel (Recomendado)
-
-```bash
-npm run build
-vercel deploy
-```
-
-### Outras Plataformas
-
-O projeto é compatível com qualquer plataforma que suporte Next.js:
-
-- Netlify
-- AWS Amplify
-- Railway
-- DigitalOcean App Platform
-
-## 📈 Performance
-
-- **SSR/SSG** com Next.js
-- **Otimização de imagens** automática
-- **Bundle splitting** inteligente
-- **Cache** de assets estáticos
-
-## 🧪 Testes
-
-```bash
-# Testes unitários
-npm run test
-
-# Testes e2e
-npm run test:e2e
-
-# Coverage
-npm run test:coverage
-```
-
-## 🤝 Contribuição
-
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob licença MIT. Veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-## 👥 Time de Desenvolvimento
-
-- **Desenvolvimento:** [Seu Nome]
-- **Design:** [Nome do Designer]
-- **QA:** [Nome do QA]
-
-## 📞 Suporte
-
-Para suporte ou dúvidas:
-
-- Email: suporte@avb.com.br
-- Issues: [GitHub Issues](https://github.com/seu-usuario/avb-login-system/issues)
-
-## 🔄 Changelog
-
-### v1.0.0 (2024)
-
-- ✅ Sistema de autenticação completo
-- ✅ Dashboard administrativo
-- ✅ Proteção contra força bruta
-- ✅ Design responsivo corporativo
-
----
-
-**AVB - Aço Verde do Brasil** ♻️
-*Produzindo um futuro mais sustentável*
-
-```
-
-```
+**Pequeno passo todos os dias** ♻️  
