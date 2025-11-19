@@ -46,7 +46,7 @@ export default function DashboardPage() {
         }
 
         const userData = await userResponse.json();
-        console.log('📦 Dados do usuário recebidos:', userData);
+        //console.log('📦 Dados do usuário recebidos:', userData);
 
         if (userData.success) {
           setUser(userData.user);
