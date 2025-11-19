@@ -75,7 +75,7 @@ export default function DashboardPage() {
                 totalUsers: 1,
                 lastUser: {
                   name: userData.user.name,
-                  email: userData.user.email,
+                  //email: userData.user.email,
                   createdAt: new Date().toISOString()
                 },
                 monthlyRegistrations: [
@@ -95,7 +95,7 @@ export default function DashboardPage() {
               totalUsers: 1,
               lastUser: {
                 name: userData.user.name,
-                email: userData.user.email,
+                //email: userData.user.email,
                 createdAt: new Date().toISOString()
               },
               monthlyRegistrations: [
@@ -233,9 +233,7 @@ export default function DashboardPage() {
                   <p className="text-lg font-semibold text-gray-600 mt-2 truncate">
                     {stats?.lastUser ? stats.lastUser.name : 'Nenhum'}
                   </p>
-                  <p className="text-sm text-gray-500 mt-1">
-                    {stats?.lastUser ? stats.lastUser.email : '-'}
-                  </p>
+                  /
                 </div>
                 <div className="w-15 h-15 bg-white rounded-lg flex items-center justify-center">
                   <img src="https://img.icons8.com/?size=24&id=7847&format=png" alt="Last User" className="object-contain" />

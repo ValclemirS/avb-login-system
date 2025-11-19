@@ -19,7 +19,7 @@ export interface DashboardStats {
   totalUsers: number;
   lastUser: {
     name: string;
-    email: string;
+    //email: string;
     createdAt: string;
   } | null;
   monthlyRegistrations: Array<{
