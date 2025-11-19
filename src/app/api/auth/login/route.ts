@@ -4,7 +4,10 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { rateLimit, resetAttempts } from '../../../../lib/rateLimit';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'teste' ;
+if (!process.env.JWT_SECRET) {
+  throw new Error("JWT_SECRET não está definido");
+}
+const JWT_SECRET = process.env.JWT_SECRET  ;
 
 // Delay artificial para dificultar força bruta
 const artificialDelay = () => new Promise(resolve => 
