@@ -1,13 +1,5 @@
 import { NextRequest } from 'next/server';
-
-
-// Interface para armazenar tentativas
-interface Attempt {
-  count: number;
-  firstAttempt: number;
-  lastAttempt: number;
-  blockedUntil?: number;
-}
+import  { Attempt } from '../types/index';
 
 // Armazenamento em memória (em produção, use Redis)
 const attempts = new Map<string, Attempt>();

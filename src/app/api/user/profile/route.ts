@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     // Ex: "Bearer 123456" -> pega só "123456"
     const token = request.headers.get('authorization')?.replace('Bearer ', '');
     
-    //console.log('🔐 Token recebido no profile:', token ? 'SIM' : 'NÃO'); // DEBUG
+    //console.log(' Token recebido no profile:', token ? 'SIM' : 'NÃO'); // DEBUG
     
     // Se não houver token, o usuário não está autenticado
     if (!token) {
@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
 
     // Valida e decodifica o token JWT
     const decoded = verifyToken(token);
-    //console.log('🔓 Token decodificado:', decoded); // DEBUG
+    //console.log(' Token decodificado:', decoded); // DEBUG
     
     // Se o token for inválido ou expirado
     if (!decoded) {
@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
       { projection: { password: 0 } }
     );
 
-    //console.log('👤 Usuário encontrado no DB:', user ? 'SIM' : 'NÃO'); // DEBUG
+    //console.log(' Usuário encontrado no DB:', user ? 'SIM' : 'NÃO'); // DEBUG
 
     // Se o usuário não existe no banco
     if (!user) {
@@ -69,7 +69,7 @@ export async function GET(request: NextRequest) {
 
   } catch (error) {
     // Captura erros inesperados
-    //console.error('❌ Erro ao buscar perfil:', error);
+    //console.error(' Erro ao buscar perfil:', error);
 
     return NextResponse.json(
       { success: false, message: 'Erro interno do servidor' },

@@ -11,14 +11,14 @@ import { verifyToken } from '../../../../lib/auth';
  */
 export async function GET(request: NextRequest) {
   try {
-    ////console.log('📊 Iniciando busca de estatísticas...');
+    ////console.log('Iniciando busca de estatísticas...');
     
     // Extrai o token do header "Authorization: Bearer token"
     const token = request.headers.get('authorization')?.replace('Bearer ', '');
     
     // Se não houver token → acesso negado
     if (!token) {
-      ////console.log('❌ Token não fornecido');
+      ////console.log(' Token não fornecido');
       return NextResponse.json(
         { success: false, message: 'Token não fornecido' },
         { status: 401 }
@@ -40,13 +40,13 @@ export async function GET(request: NextRequest) {
     const db = client.db();
     const usersCollection = db.collection('users');
 
-    //console.log('🔍 Buscando dados no MongoDB...');
+    //console.log(' Buscando dados no MongoDB...');
 
     /**
      * 1) TOTAL DE USUÁRIOS
      */
     const totalUsers = await usersCollection.countDocuments();
-    //console.log('👥 Total de usuários:', totalUsers);
+    //console.log(' Total de usuários:', totalUsers);
 
     /**
      * 2) ÚLTIMO USUÁRIO CADASTRADO
@@ -60,7 +60,7 @@ export async function GET(request: NextRequest) {
       .project({ name: 1, email: 1, createdAt: 1 }) // só os campos necessários
       .toArray();
 
-    //console.log('👤 Último usuário:', lastUser[0] || 'Nenhum');
+    //console.log(' Último usuário:', lastUser[0] || 'Nenhum');
 
     /**
      * 3) CADASTROS POR MÊS (últimos 6 meses)
@@ -72,7 +72,7 @@ export async function GET(request: NextRequest) {
     const sixMonthsAgo = new Date();
     sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
 
-    //console.log('📅 Buscando dados dos últimos 6 meses...');
+    //console.log('Buscando dados dos últimos 6 meses...');
 
     const usersByMonth = await usersCollection.aggregate([
       {
@@ -97,7 +97,7 @@ export async function GET(request: NextRequest) {
       }
     ]).toArray();
 
-    //console.log('📊 Dados agregados:', usersByMonth);
+    //console.log('Dados agregados:', usersByMonth);
 
     /**
      * 4) Formatação dos dados para exibir no gráfico
@@ -108,7 +108,7 @@ export async function GET(request: NextRequest) {
       usuarios: item.count
     }));
 
-    //console.log('📈 Dados formatados:', monthlyData);
+    //console.log(' Dados formatados:', monthlyData);
 
     // Objeto final retornado
     const responseData = {
@@ -125,7 +125,7 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('❌ Erro ao buscar estatísticas:', error);
+    console.error(' Erro ao buscar estatísticas:', error);
 
     // Retorno seguro em caso de falha
     return NextResponse.json(

@@ -27,3 +27,9 @@ export interface DashboardStats {
     usuarios: number;
   }>;
 }
+export interface Attempt {
+  count: number;
+  firstAttempt: number;
+  lastAttempt: number;
+  blockedUntil?: number;
+}

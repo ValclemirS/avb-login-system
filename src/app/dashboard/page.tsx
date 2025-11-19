@@ -5,27 +5,9 @@ import { useRouter } from 'next/navigation';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import DashboardChart from '../../components/dashboardChart';
+import {User} from '../../types/index';
+import {DashboardStats} from '../../types/index';
 
-// INTERFACES - Definições de tipos TypeScript
-interface User {
-  _id: string;
-  name: string;
-  email: string;
-  createdAt: string;
-}
-
-interface DashboardStats {
-  totalUsers: number;
-  lastUser: {
-    name: string;
-    email: string;
-    createdAt: string;
-  } | null;
-  monthlyRegistrations: Array<{
-    month: string;
-    usuarios: number;
-  }>;
-}
 
 // COMPONENTE PRINCIPAL
 export default function DashboardPage() {
@@ -39,25 +21,25 @@ export default function DashboardPage() {
     const checkAuth = async () => {
       const token = localStorage.getItem('token') || sessionStorage.getItem('token');
       
-      console.log('🔐 Token encontrado:', token ? 'SIM' : 'NÃO');
+      //console.log(' Token encontrado:', token ? 'SIM' : 'NÃO');
       
       if (!token) {
-        console.log('❌ Nenhum token encontrado, redirecionando para login...');
+        //console.log(' Nenhum token encontrado, redirecionando para login...');
         router.push('/login');
         return;
       }
 
       try {
-        console.log('📡 Buscando dados do usuário...');
+        //console.log('📡 Buscando dados do usuário...');
         
-        // ✅ VERIFICAR SE O TOKEN É VÁLIDO
+        //  VERIFICAR SE O TOKEN É VÁLIDO
         const userResponse = await fetch('/api/user/profile', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
         });
 
-        console.log('👤 Status da resposta do perfil:', userResponse.status);
+        ////console.log('👤 Status da resposta do perfil:', userResponse.status);
 
         if (!userResponse.ok) {
           throw new Error(`Erro HTTP: ${userResponse.status}`);
@@ -69,7 +51,7 @@ export default function DashboardPage() {
         if (userData.success) {
           setUser(userData.user);
           
-          console.log('📊 Buscando estatísticas...');
+          //console.log('📊 Buscando estatísticas...');
           // ✅ BUSCAR ESTATÍSTICAS APÓS CONFIRMAR AUTENTICAÇÃO
           const statsResponse = await fetch('/api/dashboard/stats', {
             headers: {
@@ -77,17 +59,17 @@ export default function DashboardPage() {
             }
           });
 
-          console.log('📈 Status da resposta das stats:', statsResponse.status);
+          //console.log('📈 Status da resposta das stats:', statsResponse.status);
 
           if (statsResponse.ok) {
             const statsData = await statsResponse.json();
-            console.log('📊 Dados das estatísticas:', statsData);
+            //console.log('📊 Dados das estatísticas:', statsData);
             
             if (statsData.success) {
               setStats(statsData.data);
-              console.log('✅ Estatísticas carregadas:', statsData.data);
+              //console.log('✅ Estatísticas carregadas:', statsData.data);
             } else {
-              console.log('❌ Erro nas estatísticas:', statsData.message);
+              //console.log('❌ Erro nas estatísticas:', statsData.message);
               // Dados de exemplo como fallback
               setStats({
                 totalUsers: 1,
@@ -107,7 +89,7 @@ export default function DashboardPage() {
               });
             }
           } else {
-            console.log('❌ Falha na requisição de estatísticas');
+            //console.log('❌ Falha na requisição de estatísticas');
             // Dados de exemplo como fallback
             setStats({
               totalUsers: 1,

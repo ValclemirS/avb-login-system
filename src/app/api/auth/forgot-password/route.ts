@@ -10,11 +10,13 @@ import crypto from 'crypto';
  * 3. Salva esse token no banco
  * 4. simula o envio de um e-mail
  */
+
+ /*
+    Função assíncrona que lida com requisições POST para o endpoint de esqueci minha senha.
+    primeiro verifica se o email foi enviado no corpo da requisição.
+  */
 export async function POST(request: NextRequest) {
   try {
-    /**
-     *  RECEBER EMAIL DO BODY
-     */
     const { email } = await request.json();
 
     // Se o email não foi enviado → erro
@@ -25,9 +27,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    /**
-     *  CONECTAR AO MONGO
-     */
+    
+    //CONECTAR AO MONGO
     const client = await clientPromise;
     const db = client.db();
     const usersCollection = db.collection('users');
@@ -39,20 +40,20 @@ export async function POST(request: NextRequest) {
 
     /**
      * Por segurança:
-     * ❗ NÃO vamos dizer se o email existe ou não.
+     * Importante vamos dizer se o email existe ou não.
      * Assim, ninguém consegue testar emails e descobrir usuários do sistema.
      *  RESPOSTA PADRÃO (mesmo se o email não existir)
-     * Isso impede ataques de enumeração de email.
+     * Objetivo: prevenir ataques de enumeração de email.
      */
     if (!user) {
       return NextResponse.json({
         success: true,
-        message: 'Instruções de redefinição de senha enviadas para seu email' // mensagem genérica 
+        message: 'Instruções de redefinição de senha enviadas para seu email' // mensagem genérica
       });
     }
 
     /**
-     *  GERAR TOKEN DE RESET SEGURO
+     *  GERAR TOKEN DE RESET 
      * crypto.randomBytes → cria bytes aleatórios de alta entropia
      * toString('hex') → transforma em texto
      */

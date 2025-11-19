@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
 
     // Validação: senha mínima de segurança
    
-    if (password.length < 6) { // exemplo: mínimo 6 caracteres
+    if (password.length < 6) { //  mínimo 6 caracteres
       return NextResponse.json(
         { success: false, message: `A senha deve ter pelo menos 6 caracteres` },
         { status: 400 }
