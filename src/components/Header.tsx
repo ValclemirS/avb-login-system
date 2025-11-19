@@ -15,26 +15,26 @@ export default function Header() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
             <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <Link href="https://boletos.avb.com.br" target="_blank" className="hover:text-avb-light transition-colors">
+              <Link href="#" target="_blank" className="hover:text-avb-light transition-colors">
                 PORTAL DE BOLETOS
               </Link>
               <span>|</span>
-              <Link href="https://www.contatoseguro.com.br/ferroeste" target="_blank" className="hover:text-avb-light transition-colors">
+              <Link href="#" target="_blank" className="hover:text-avb-light transition-colors">
                 CANAL DE DENÚNCIAS
               </Link>
               <span>|</span>
-              <Link href="https://ri.avb.com.br" target="_blank" className="hover:text-avb-light transition-colors">
+              <Link href="#" target="_blank" className="hover:text-avb-light transition-colors">
                 RELAÇÕES COM INVESTIDORES
               </Link>
             </div>
             <div className="flex space-x-4">
-              <Link href="https://www.facebook.com/AVBAcoVerdedoBrasil" target="_blank" className="hover:text-avb-light transition-colors">
+              <Link href="#" target="_blank" className="hover:text-avb-light transition-colors">
                 <i className="fab fa-facebook-f">Facebook</i>
               </Link>
-              <Link href="https://www.linkedin.com/company/avbacoverdedobrasil" target="_blank" className="hover:text-avb-light transition-colors">
+              <Link href="#" target="_blank" className="hover:text-avb-light transition-colors">
                 <i className="fab fa-linkedin-in">Linkedin</i>
               </Link>
-              <Link href="https://www.instagram.com/avb_acoverdedobrasil" target="_blank" className="hover:text-avb-light transition-colors">
+              <Link href="#" target="_blank" className="hover:text-avb-light transition-colors">
                 <i className="fab fa-instagram">Instagram</i>
               </Link>
             </div>
@@ -64,22 +64,22 @@ export default function Header() {
                 <i className="ml-1 fas fa-chevron-down text-xs"></i>
               </button>
               <div className="absolute text-green-700 top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                <Link href="/fio-maquina" className="block px-4 py-3 hover:bg-black-50 border-b border-gray-100">
+                <Link href="#" className="block px-4 py-3 hover:bg-black-50 border-b border-gray-100">
                   Fio Máquina
                 </Link>
-                <Link href="/vergalhao-avb-50-barra" className="block px-4 py-3 hover:bg-black-50 border-b border-gray-100">
+                <Link href="#" className="block px-4 py-3 hover:bg-black-50 border-b border-gray-100">
                   Vergalhão CA-50 AVB
                 </Link>
-                <Link href="/vergalhao-ca-60-avb" className="block px-4 py-3 hover:bg-black-50 border-b border-gray-100">
+                <Link href="#" className="block px-4 py-3 hover:bg-black-50 border-b border-gray-100">
                   Vergalhão AVB 60
                 </Link>
               </div>
             </div>
 
-            <Link href="/certificacoes" className="font-semibold text-white hover:text-avb-green transition-colors">
+            <Link href="#" className="font-semibold text-white hover:text-avb-green transition-colors">
               Certificações
             </Link>
-            <Link href="/sustentabilidade" className="font-semibold text-white-900 hover:text-avb-green transition-colors">
+            <Link href="#" className="font-semibold text-white-900 hover:text-avb-green transition-colors">
               Sustentabilidade
             </Link>
             
