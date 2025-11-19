@@ -5,6 +5,8 @@ import Link from 'next/link';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
+
 
   return (
     <header className="bg-GREEN-900 shadow-lg">
@@ -98,28 +100,67 @@ export default function Header() {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-gray-200">
-            <div className="flex flex-col space-y-4">
-              <Link href="/" className="font-semibold text-gray-700 hover:text-avb-green transition-colors">
-                A AVB
-              </Link>
-              <Link href="/produtos" className="font-semibold text-gray-700 hover:text-avb-green transition-colors">
-                Produtos
-              </Link>
-              <Link href="/certificacoes" className="font-semibold text-gray-700 hover:text-avb-green transition-colors">
-                Certificações
-              </Link>
-              <Link href="/sustentabilidade" className="font-semibold text-gray-700 hover:text-avb-green transition-colors">
-                Sustentabilidade
-              </Link>
-              <Link href="/login" className="btn-primary text-center">
-                Acessar
-              </Link>
-            </div>
+      {/* Mobile Navigation */}
+{isMenuOpen && (
+  <div className="lg:hidden bg-white shadow-md border-t border-gray-200">
+    <nav className="flex flex-col py-4 px-4 space-y-3">
+
+      <Link 
+        href="/" 
+        className="text-gray-800 font-medium hover:text-avb-green transition"
+      >
+        A AVB
+      </Link>
+
+      {/* Produtos com submenu */}
+      <div className="flex flex-col">
+        <button
+          onClick={() => setProductsOpen(!productsOpen)}
+          className="text-gray-800 font-medium flex justify-between items-center"
+        >
+          Produtos
+          <i className={`fas fa-chevron-${productsOpen ? 'up' : 'down'}`}></i>
+        </button>
+
+        {productsOpen && (
+          <div className="ml-3 mt-2 flex flex-col space-y-2 text-gray-700">
+            <Link href="/fio-maquina" className="hover:text-avb-green transition">
+              Fio Máquina
+            </Link>
+            <Link href="/vergalhao-avb-50-barra" className="hover:text-avb-green transition">
+              Vergalhão CA-50 AVB
+            </Link>
+            <Link href="/vergalhao-ca-60-avb" className="hover:text-avb-green transition">
+              Vergalhão AVB 60
+            </Link>
           </div>
         )}
       </div>
+
+      <Link 
+        href="/certificacoes" 
+        className="text-gray-800 font-medium hover:text-avb-green transition"
+      >
+        Certificações
+      </Link>
+
+      <Link 
+        href="/sustentabilidade" 
+        className="text-gray-800 font-medium hover:text-avb-green transition"
+      >
+        Sustentabilidade
+      </Link>
+
+      <Link 
+        href="/login" 
+        className="btn-primary text-center"
+      >
+        Acessar
+      </Link>
+    </nav>
+  </div>
+)}
+
     </header>
   );
 }
