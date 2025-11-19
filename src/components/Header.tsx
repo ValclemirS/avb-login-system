@@ -27,13 +27,13 @@ export default function Header() {
             </div>
             <div className="flex space-x-4">
               <Link href="https://www.facebook.com/AVBAcoVerdedoBrasil" target="_blank" className="hover:text-avb-light transition-colors">
-                <i className="fab fa-facebook-f"></i>
+                <i className="fab fa-facebook-f">Facebook</i>
               </Link>
               <Link href="https://www.linkedin.com/company/avbacoverdedobrasil" target="_blank" className="hover:text-avb-light transition-colors">
-                <i className="fab fa-linkedin-in"></i>
+                <i className="fab fa-linkedin-in">Linkedin</i>
               </Link>
               <Link href="https://www.instagram.com/avb_acoverdedobrasil" target="_blank" className="hover:text-avb-light transition-colors">
-                <i className="fab fa-instagram"></i>
+                <i className="fab fa-instagram">Instagram</i>
               </Link>
             </div>
           </div>
