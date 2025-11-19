@@ -36,12 +36,12 @@ body {
     rgba(158, 189, 158, 0.719) 50%,
     rgba(81, 105, 85, 0.753) 100%);
 }
-/* 🔥 Corrige placeholder/texto quando o navegador faz AUTOFILL */
+/* Estilos para o autofill do Chrome */
 input:-webkit-autofill {
-  -webkit-text-fill-color: #000000 !important; /* Cor do texto */
-  transition: background-color 999999s ease-in-out 0s; /* remove bg amarelo */
+  -webkit-text-fill-color: #000000 !important; 
+  transition: background-color 999999s ease-in-out 0s; 
 }
 
 input:-webkit-autofill::placeholder {
-  color: #999 !important; /* Cor do placeholder */
+  color: #999 !important; 
 }
