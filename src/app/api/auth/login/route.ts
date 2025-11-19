@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { rateLimit, resetAttempts } from '../../../../lib/rateLimit';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'secret-key';
+const JWT_SECRET = process.env.JWT_SECRET ;
 
 // Delay artificial para dificultar força bruta
 const artificialDelay = () => new Promise(resolve => 
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-
+    const normalizedEmail = email.toLowerCase();
     // Validar formato do email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
