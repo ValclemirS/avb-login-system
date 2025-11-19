@@ -11,13 +11,13 @@ export default function Footer() {
               <img src="https://avb.com.br/wp-content/uploads/2020/11/logo.png" alt="AVB Logo" className="object-contain mx-auto mb-6" />
             </div>
             <div className="flex space-x-4 mb-6">
-              <Link href="https://www.facebook.com/AVBAcoVerdedoBrasil" target="_blank" className="hover:text-avb-light transition-colors">
+              <Link href="#" target="_blank" className="hover:text-avb-light transition-colors">
                 <i className="fab fa-facebook-f text-xl"></i>
               </Link>
-              <Link href="https://www.linkedin.com/company/avbacoverdedobrasil" target="_blank" className="hover:text-avb-light transition-colors">
+              <Link href="#" target="_blank" className="hover:text-avb-light transition-colors">
                 <i className="fab fa-linkedin-in text-xl"></i>
               </Link>
-              <Link href="https://www.instagram.com/avb_acoverdedobrasil" target="_blank" className="hover:text-avb-light transition-colors">
+              <Link href="#" target="_blank" className="hover:text-avb-light transition-colors">
                 <i className="fab fa-instagram text-xl"></i>
               </Link>
             </div>
