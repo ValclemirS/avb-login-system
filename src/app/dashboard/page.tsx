@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import DashboardChart from '../../components/dashboardChart';
-import {User} from '../../types/index';
-import {DashboardStats} from '../../types/index';
+import { User } from '../../types/index';
+import { DashboardStats } from '../../types/index';
 
 
 // COMPONENTE PRINCIPAL
@@ -20,62 +20,37 @@ export default function DashboardPage() {
   useEffect(() => {
     const checkAuth = async () => {
       const token = localStorage.getItem('token') || sessionStorage.getItem('token');
-      
-      //console.log(' Token encontrado:', token ? 'SIM' : 'NÃO');
-      
       if (!token) {
-        //console.log(' Nenhum token encontrado, redirecionando para login...');
         router.push('/login');
         return;
       }
-
       try {
-        //console.log('📡 Buscando dados do usuário...');
-        
-        //  VERIFICAR SE O TOKEN É VÁLIDO
         const userResponse = await fetch('/api/user/profile', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
         });
-
-        ////console.log('👤 Status da resposta do perfil:', userResponse.status);
-
         if (!userResponse.ok) {
           throw new Error(`Erro HTTP: ${userResponse.status}`);
         }
-
         const userData = await userResponse.json();
-        //console.log('📦 Dados do usuário recebidos:', userData);
-
         if (userData.success) {
           setUser(userData.user);
-          
-          //console.log('📊 Buscando estatísticas...');
-          // ✅ BUSCAR ESTATÍSTICAS APÓS CONFIRMAR AUTENTICAÇÃO
           const statsResponse = await fetch('/api/dashboard/stats', {
             headers: {
               'Authorization': `Bearer ${token}`
             }
           });
-
-          //console.log('📈 Status da resposta das stats:', statsResponse.status);
-
           if (statsResponse.ok) {
             const statsData = await statsResponse.json();
-            //console.log('📊 Dados das estatísticas:', statsData);
-            
             if (statsData.success) {
               setStats(statsData.data);
-              //console.log('✅ Estatísticas carregadas:', statsData.data);
             } else {
-              //console.log('❌ Erro nas estatísticas:', statsData.message);
-              // Dados de exemplo como fallback
               setStats({
                 totalUsers: 1,
                 lastUser: {
                   name: userData.user.name,
-                  //email: userData.user.email,
+
                   createdAt: new Date().toISOString()
                 },
                 monthlyRegistrations: [
@@ -89,13 +64,10 @@ export default function DashboardPage() {
               });
             }
           } else {
-            //console.log('❌ Falha na requisição de estatísticas');
-            // Dados de exemplo como fallback
             setStats({
               totalUsers: 1,
               lastUser: {
-                name: userData.user.name,
-                //email: userData.user.email,
+                name: userData.user.name
                 createdAt: new Date().toISOString()
               },
               monthlyRegistrations: [
@@ -113,8 +85,7 @@ export default function DashboardPage() {
         }
 
       } catch (error) {
-        console.error('❌ Erro de autenticação:', error);
-        // ✅ LIMPAR TOKENS INVÁLIDOS
+        console.error('❌ Erro de autenticação:', error);    
         localStorage.removeItem('token');
         sessionStorage.removeItem('token');
         setError('Sessão expirada. Faça login novamente.');
@@ -128,7 +99,6 @@ export default function DashboardPage() {
   }, [router]);
 
   const handleLogout = () => {
-    // ✅ LIMPAR TODOS OS TOKENS
     localStorage.removeItem('token');
     sessionStorage.removeItem('token');
     router.push('/');
@@ -166,7 +136,7 @@ export default function DashboardPage() {
           <div className="bg-red-50 border border-red-200 text-red-700 px-6 py-4 rounded-lg max-w-md">
             <i className="fas fa-exclamation-triangle text-2xl mb-2"></i>
             <p>{error}</p>
-            <button 
+            <button
               onClick={() => window.location.reload()}
               className="mt-4 btn-primary"
             >
@@ -181,7 +151,7 @@ export default function DashboardPage() {
   return (
     <>
       <Header />
-      
+
       <main className="min-h-screen bg-gray-50 py-8">
         <div className="container mx-auto px-4">
           {/* Header do Dashboard */}
@@ -194,7 +164,7 @@ export default function DashboardPage() {
                 Painel administrativo - Aço Verde do Brasil
               </p>
             </div>
-            <button 
+            <button
               onClick={handleLogout}
               className="mt-4 lg:mt-0 px-6 py-2 border border-red-500 text-red-500 rounded-lg hover:bg-red-50 transition-colors flex items-center"
             >
@@ -250,8 +220,8 @@ export default function DashboardPage() {
                 <div>
                   <p className="text-sm font-medium text-gray-600">Cadastros/Mês</p>
                   <p className="text-3xl font-bold text-gray-600 mt-2">
-                    {stats?.monthlyRegistrations && stats.monthlyRegistrations.length > 0 
-                      ? stats.monthlyRegistrations[stats.monthlyRegistrations.length - 1].usuarios 
+                    {stats?.monthlyRegistrations && stats.monthlyRegistrations.length > 0
+                      ? stats.monthlyRegistrations[stats.monthlyRegistrations.length - 1].usuarios
                       : 0
                     }
                   </p>
@@ -282,7 +252,7 @@ export default function DashboardPage() {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </>
   );

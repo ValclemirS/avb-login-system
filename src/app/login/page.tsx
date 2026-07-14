@@ -40,13 +40,13 @@ export default function LoginPage() {
       const data = await response.json();
 
       if (data.success) {
-        // ✅ SALVAR TOKEN NO localStorage E sessionStorage
+        // SALVAR TOKEN NO localStorage E sessionStorage
         if (rememberMe) {
           localStorage.setItem('token', data.token);
         }
         sessionStorage.setItem('token', data.token);
         
-        // ✅ REDIRECIONAR COM TIMEOUT
+        // REDIRECIONAR COM TIMEOUT
         setTimeout(() => {
           router.push('/dashboard');
           router.refresh(); // Forçar atualização

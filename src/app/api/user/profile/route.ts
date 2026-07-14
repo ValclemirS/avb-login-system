@@ -3,16 +3,10 @@ import clientPromise from '../../../../lib/mongodb';
 import { verifyToken } from '../../../../lib/auth';
 
 
-// Rota GET que retorna os dados do usuário logado (perfil)
 export async function GET(request: NextRequest) {
   try {
-    // Extrai o token do header "Authorization"
-    // Ex: "Bearer 123456" -> pega só "123456"
+
     const token = request.headers.get('authorization')?.replace('Bearer ', '');
-    
-    //console.log(' Token recebido no profile:', token ? 'SIM' : 'NÃO'); // DEBUG
-    
-    // Se não houver token, o usuário não está autenticado
     if (!token) {
       return NextResponse.json(
         { success: false, message: 'Token não fornecido' },
@@ -22,9 +16,7 @@ export async function GET(request: NextRequest) {
 
     // Valida e decodifica o token JWT
     const decoded = verifyToken(token);
-    //console.log(' Token decodificado:', decoded); // DEBUG
-    
-    // Se o token for inválido ou expirado
+
     if (!decoded) {
       return NextResponse.json(
         { success: false, message: 'Token inválido' },
@@ -40,13 +32,10 @@ export async function GET(request: NextRequest) {
     const usersCollection = db.collection('users');
 
     // Busca o usuário pelo email presente no token
-    // "projection" remove o campo password do resultado
     const user = await usersCollection.findOne(
       { email: decoded.email },
       { projection: { password: 0 } }
     );
-
-    //console.log(' Usuário encontrado no DB:', user ? 'SIM' : 'NÃO'); // DEBUG
 
     // Se o usuário não existe no banco
     if (!user) {
@@ -73,7 +62,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(
       { success: false, message: 'Erro interno do servidor' },
-      { status: 500 } // 500 = falha no servidor
+      { status: 500 }
     );
   }
 }
